@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-/* Asegura que todo use border-box */
 html, body, #root {
   height: 100%;
   margin: 0;
@@ -10,7 +9,7 @@ html, body, #root {
   overflow: hidden;
 }
 
-/* Carcasa: ocupa todo el viewport sin padding extra */
+/* Carcasa Pokédex */
 .pokedex-bg {
   height: calc(100vh - 1vw);
   width: calc(100vw - 1vw);
@@ -23,17 +22,34 @@ html, body, #root {
   transition: border-radius 0.2s;
   overflow: hidden;
   box-sizing: border-box;
+  position: relative;
+  box-shadow: 0 0 0 12px #fff3, 0 8px 32px #1e1e1e88;
 }
 
-/* Pantalla: siempre cabe dentro de la carcasa, scrolleable si overflow */
+/* Bisagra Pokédex */
+.pokedex-bg::before {
+  content: "";
+  position: absolute;
+  left: -2vw;
+  top: 40%;
+  width: 2vw;
+  height: 20vw;
+  background: linear-gradient(90deg, #616161 60%, transparent 100%);
+  border-radius: 2vw 0 0 2vw;
+  z-index: 2;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Pantalla Pokédex */
 .pokedex-frame {
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #e3f2fd 80%, #90caf9 100%);
   border: 8px solid #616161;
   border-radius: 3.5vw;
   width: 90vw;
   height: 90vh;
   margin: 0;
-  box-shadow: 0 8px 32px #1e1e1e88;
+  box-shadow: inset 0 0 24px #1976d2cc;
   padding: 2rem 1.5rem 2.5rem 1.5rem;
   position: relative;
   overflow-y: auto;
@@ -50,12 +66,13 @@ html, body, #root {
   flex-shrink: 0;
 }
 
-/* Pantalla superior con "led" */
+/* Pantalla superior con "led" y botones */
 .pokedex-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .pokedex-led {
@@ -65,8 +82,41 @@ html, body, #root {
   background: radial-gradient(circle, #03a9f4 60%, #01579b 100%);
   box-shadow: 0 0 12px #03a9f4cc, 0 0 0 4px #fff;
   border: 3px solid #1976d2;
+  animation: led-blink 2s infinite alternate;
 }
 
+@keyframes led-blink {
+  0% { box-shadow: 0 0 12px #03a9f4cc, 0 0 0 4px #fff; }
+  100% { box-shadow: 0 0 24px #03a9f4, 0 0 0 4px #fff; }
+}
+
+/* Botón grande tipo Pokédex */
+.pokedex-btn-main {
+  position: absolute;
+  left: 0px;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff5252 60%, #b71c1c 100%);
+  border: 4px solid #fff;
+  box-shadow: 0 0 16px #ff5252cc, 0 0 0 6px #b71c1c;
+  z-index: 10;
+}
+
+/* LED decorativo extra */
+.pokedex-led-small {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #00e676 60%, #388e3c 100%);
+  box-shadow: 0 0 8px #00e676cc;
+  border: 2px solid #fff;
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+
+/* Título */
 .pokedex-title {
   font-family: 'Press Start 2P', cursive;
   color: #d32f2f;
@@ -74,6 +124,7 @@ html, body, #root {
   font-weight: bold;
   letter-spacing: 4px;
   text-shadow: 2px 2px 0 #fff, 4px 4px 0 #21212122;
+  flex: 1;
 }
 
 /* Lista y grid de pokémons */

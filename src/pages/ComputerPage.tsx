@@ -38,26 +38,33 @@ const ComputerPage: React.FC = () => {
     <div className="pokedex-bg">
       <div className="pokedex-frame">
         <div className="pokedex-header">
+          <div className="pokedex-btn-main" />
           <div className="pokedex-led" />
           <span className="pokedex-title">PokéApp</span>
+          <span className="pokedex-led-small" />
+          <span className="pokedex-led-small" style={{ background: "radial-gradient(circle, #fff176 60%, #fbc02d 100%)" }} />
         </div>
         <ViewSwitcher view={view} setView={handleViewChange} />
-        {view === "list" ? (
-          <PokemonList
-            pokemons={pokemons}
-            page={page}
-            pageSize={pageSize}
-            totalPages={totalPages}
-          />
-        ) : (
-          <PokemonGrid
-            pokemons={pokemons}
-            page={page}
-            pageSize={pageSize}
-            totalPages={totalPages}
-          />
-        )}
-        <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
+          {view === "list" ? (
+            <PokemonList
+              pokemons={pokemons}
+              page={page}
+              pageSize={pageSize}
+              totalPages={totalPages}
+            />
+          ) : (
+            <PokemonGrid
+              pokemons={pokemons}
+              page={page}
+              pageSize={pageSize}
+              totalPages={totalPages}
+            />
+          )}
+        <Pagination
+          page={page}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
