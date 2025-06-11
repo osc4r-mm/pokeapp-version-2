@@ -42,6 +42,7 @@ html, body, #root {
   flex-direction: column;
   transition: border-radius 0.2s, padding 0.2s, max-width 0.2s;
   box-sizing: border-box;
+  scrollbar-width: none;
 }
 
 /* El contenido nunca encoge la pantalla */
