@@ -14,12 +14,10 @@ const ComputerPage: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [total, setTotal] = useState<number>(0);
 
-  // Sincroniza página y vista con la URL
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
   const view = (searchParams.get("view") as ViewType) || "list";
 
-  // Carga los pokémon al cambiar de página
   useEffect(() => {
     fetchPokemons(page, pageSize).then(({ results, count }) => {
       setPokemons(results);
@@ -29,7 +27,6 @@ const ComputerPage: React.FC = () => {
 
   const totalPages = Math.ceil(total / pageSize);
 
-  // Actualiza la URL al cambiar de página o vista
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage), view });
   };

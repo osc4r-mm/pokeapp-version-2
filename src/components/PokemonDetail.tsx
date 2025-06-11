@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { PokemonDetailData } from "../types/PokemonDetail";
+import { PokemonDetailProps } from "../types/PokemonDetail";
 import { fetchPokemonDetail } from "../utils/fetchPokemons";
 
 const PokemonDetail: React.FC = () => {
   const { name } = useParams<{ name: string }>();
-  const [pokemon, setPokemon] = useState<PokemonDetailData | null>(null);
+  const [pokemon, setPokemon] = useState<PokemonDetailProps | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -18,7 +18,22 @@ const PokemonDetail: React.FC = () => {
 
   if (!pokemon) return <div className="pokedex-detail">Carregant...</div>;
 
-  const prevState = location.state as Record<string, unknown> || {};
+  const prevState = location.state as {
+    page?: number;
+    pageSize?: number;
+    view?: "list" | "grid";
+    from?: string;
+  } || {};
+
+  const handleBack = () => {
+    if (prevState.page && prevState.pageSize && prevState.view) {
+      navigate(
+        `/?page=${prevState.page}&pageSize=${prevState.pageSize}&view=${prevState.view}`
+      );
+    } else {
+      navigate("/");
+    }
+  };
 
   return (
     <div className="pokedex-detail">
@@ -30,10 +45,7 @@ const PokemonDetail: React.FC = () => {
         height={150}
       />
       <br />
-      <button
-        className="pokedex-btn"
-        onClick={() => navigate("/", { state: prevState })}
-      >
+      <button className="pokedex-btn" onClick={handleBack}>
         Tornar al llistat
       </button>
     </div>

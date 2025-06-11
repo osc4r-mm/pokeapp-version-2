@@ -1,5 +1,5 @@
 import { Pokemon } from "../types/Pokemon";
-import { PokemonDetailData } from "../types/PokemonDetail";
+import { PokemonDetailProps } from "../types/PokemonDetail";
 
 export interface FetchPokemonsResult {
   results: Pokemon[];
@@ -16,7 +16,7 @@ export async function fetchPokemons(page: number, pageSize: number): Promise<Fet
 }
 
 
-export async function fetchPokemonDetail(name: string): Promise<PokemonDetailData> {
+export async function fetchPokemonDetail(name: string): Promise<PokemonDetailProps> {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   if (!res.ok) throw new Error("No se pudo cargar el Pokémon");
   return await res.json();

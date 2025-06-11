@@ -3,7 +3,7 @@ export interface PokemonSprites {
   [key: string]: string | null;
 }
 
-export interface PokemonDetailData {
+export interface PokemonDetailProps {
   name: string;
   sprites: PokemonSprites;
 }
