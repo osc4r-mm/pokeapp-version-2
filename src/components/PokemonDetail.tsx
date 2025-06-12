@@ -37,7 +37,7 @@ const PokemonDetail: React.FC = () => {
 
   return (
     <div className="pokedex-detail">
-      <h2>{pokemon.name}</h2>
+      <h1>{pokemon.name}</h1>
       <img
         src={pokemon.sprites?.front_default}
         alt={pokemon.name}

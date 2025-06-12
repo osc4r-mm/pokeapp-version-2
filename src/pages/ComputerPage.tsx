@@ -40,7 +40,7 @@ const ComputerPage: React.FC = () => {
         <div className="pokedex-header">
           <div className="pokedex-btn-main" />
           <div className="pokedex-led" />
-          <span className="pokedex-title">PokéApp</span>
+          <h1 className="pokedex-title">PokéApp</h1>
           <span className="pokedex-led-small" />
           <span className="pokedex-led-small" style={{ background: "radial-gradient(circle, #fff176 60%, #fbc02d 100%)" }} />
         </div>
