@@ -28,7 +28,7 @@ const PokemonDetail: React.FC = () => {
   const handleBack = () => {
     if (prevState.page && prevState.pageSize && prevState.view) {
       navigate(
-        `/?page=${prevState.page}&pageSize=${prevState.pageSize}&view=${prevState.view}`
+        `/?page=${prevState.page}&view=${prevState.view}`
       );
     } else {
       navigate("/");

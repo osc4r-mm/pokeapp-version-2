@@ -38,7 +38,6 @@ const ComputerPage: React.FC = () => {
     <div className="pokedex-bg">
       <div className="pokedex-frame">
         <div className="pokedex-header">
-          <div className="pokedex-btn-main" />
           <div className="pokedex-led" />
           <h1 className="pokedex-title">PokéApp</h1>
           <span className="pokedex-led-small" />
